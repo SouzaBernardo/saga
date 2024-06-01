@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: saga
+  kafka:
+    bootstrap-servers: localhost:9092
+    streams:
+      application-id: ${spring.application.name}
+    properties:
+      sasl:
+        mechanism: PLAIN
+  cloud:
+    function:
+      definition: simple-consumer-topic;another-topic
+    stream:
+      bindings:
+        simple-consumer-topic:
+          destination: simple-consumer-topic
+          content-type: String
+          group: simple
